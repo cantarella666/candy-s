@@ -12,6 +12,7 @@ import java.util.concurrent.TimeUnit;
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNotNull;
 import static lib.Init.getDriver;
+import static lib.BeforeClass.*;
 
 
 /**
@@ -27,7 +28,7 @@ public class StudyTest {
     @Test
     public void Test() {
 
-        getDriver().get("https://online.sberbankins.ru/store/vzr/index.html#/viewCalc");
+        getDriver().get(url);
         getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         //проверка заголовка
         //#1
