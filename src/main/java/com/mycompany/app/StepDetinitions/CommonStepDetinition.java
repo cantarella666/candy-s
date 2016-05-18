@@ -4,6 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 
+import java.util.concurrent.TimeUnit;
+
 import static junit.framework.Assert.assertEquals;
 import static com.mycompany.app.lib.Init.getDriver;
 import static junit.framework.Assert.assertNotNull;
@@ -13,17 +15,17 @@ import static junit.framework.Assert.assertNotNull;
  * Created by cantarella on 18.05.2016.
  */
 public class CommonStepDetinition {
-    public void openInsuranceTravelTest(){
+    public void openInsuranceTravelTest(String url){
 
+        getDriver().get(url);
+        getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
-        //проверка заголовка
-        //#1
         String stringTitle = getDriver().findElement(By.xpath("html/body/div[1]/header/div/h2"))
                 .getAttribute("innerHTML");
         assertEquals("Страхование&nbsp;путешественников", stringTitle);
     }
 
-    public void ChoosePolic(){
+    public void choosePolic(){
 
         String stringRegion = getDriver().findElement(By.cssSelector(".ng-binding.ng-scope.b-dropdown-title"))
                 .getAttribute("innerHTML");

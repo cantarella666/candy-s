@@ -1,19 +1,17 @@
 package com.mycompany.app;
 
 
+
+import com.mycompany.app.StepDetinitions.CommonStepDetinition;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.openqa.selenium.*;
-import org.openqa.selenium.NoSuchElementException;
+
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
-import java.util.concurrent.TimeUnit;
 
-import static junit.framework.Assert.assertEquals;
-import static junit.framework.Assert.assertNotNull;
 import static com.mycompany.app.lib.Init.getDriver;
 
 
@@ -30,9 +28,11 @@ public class StudyTest {
 
         System.out.println("test1");
         property.load(new FileInputStream("src/test/java/config/application.properties"));
-        System.setProperty("browser", browser);
-        browser = property.getProperty("db.browser");
-        url = property.getProperty("db.url");
+
+        System.setProperty("browser", property.getProperty("browser"));
+        browser = property.getProperty("browser");
+        url = property.getProperty("url");
+        System.setProperty("url", property.getProperty("url"));
 
         /*browser = property.getProperty("db.browser");
         url = property.getProperty("db.url");*/
@@ -42,11 +42,21 @@ public class StudyTest {
 
     @Test
     public void Test() {
+        CommonStepDetinition study = new CommonStepDetinition();
 
-        getDriver().get(url);
-        getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-
+        study.openInsuranceTravelTest(System.getProperty("url"));
+        study.choosePolic();
+        study.formalizationConformation();
+        study.minInsurance();
+        study.enoughPrice();
+        study.enoughResultPrice();
+        study.withSportBlock();
+        study.fullTestSportBlock();
+        study.providentBlock();
+        study.saveBag();
     }
+
+
 
 
     @AfterClass

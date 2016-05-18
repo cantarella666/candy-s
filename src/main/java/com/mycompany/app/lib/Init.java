@@ -6,6 +6,7 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -27,6 +28,13 @@ public class Init {
         Init.driver = driver;
 
     }
+public static HashMap Stash;
+    public static HashMap getStash(){
+        if (null == Stash)
+            Stash = new HashMap();
+        return Stash;
+    }
+
 
 public static void createWebDriver(){
 
