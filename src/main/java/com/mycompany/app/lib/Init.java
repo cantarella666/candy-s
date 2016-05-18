@@ -1,5 +1,4 @@
-package lib;
-import static test.java.StudyTest.*;
+package com.mycompany.app.lib;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -34,7 +33,7 @@ public static void createWebDriver(){
 
     DesiredCapabilities capabilities = new DesiredCapabilities();
 
-    switch (System.getProperty(browser)){
+    switch (System.getProperty("browser")){
         case "firefox":
             capabilities.setBrowserName("firefox");
             setDriver((WebDriver) new FirefoxDriver(capabilities));

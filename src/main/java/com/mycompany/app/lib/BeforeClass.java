@@ -1,5 +1,5 @@
 /*
-package lib;
+package com.mycompany.app.lib;
 
 import org.junit.Before;
 import org.openqa.selenium.WebDriver;
