@@ -28,7 +28,10 @@ public class Init {
         Init.driver = driver;
 
     }
+
 public static void createWebDriver(){
+
+
     DesiredCapabilities capabilities = new DesiredCapabilities();
     switch (System.getProperty(browser)){
         case "firefox":

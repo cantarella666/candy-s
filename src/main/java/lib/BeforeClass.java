@@ -15,7 +15,7 @@ public class BeforeClass {
     public static String browser;
     public static Properties property;
 
-    public static String getUrl(){
+/*    public static String getUrl(){
         if (null == url){
             createUrl();
         }
@@ -24,14 +24,31 @@ public class BeforeClass {
 
     public static String getBrowser(){
         if (null == browser){
-            createUrl();
+            createBrowser();
         }
         return browser;
     }
 
-    @Before
+    public static void setBrowser(String browser){
+        BeforeClass.browser = browser;
+
+    }
+
+    public static void setUrl(String url){
+        BeforeClass.url = url;
+    }*/
+
+
+    @org.junit.BeforeClass
     public static void BeforeClass() throws IOException{
+        Properties property = new Properties();
+
+        browser = property.getProperty("browser");
+        url = property.getProperty("url");
+        System.out.println("test1");
         property.load(new FileInputStream("src/test/java/config/application.properties"));
+        System.setProperty("browser", "url");
+
     }
 
     public static void createUrl(){
