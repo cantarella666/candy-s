@@ -7,23 +7,39 @@ import org.junit.Test;
 import org.openqa.selenium.*;
 import org.openqa.selenium.NoSuchElementException;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNotNull;
 import static lib.Init.getDriver;
-import static lib.BeforeClass.*;
 
 
 /**
  * Created by cantarella on 14.05.2016.
  */
 public class StudyTest {
-    @BeforeClass
+    public static String url;
+    public static String browser;
 
-    public static void preCondition() {
-        System.out.println("1");
+    @BeforeClass
+    public static void BeforeClass() throws IOException {
+        Properties property = new Properties();
+
+        browser = property.getProperty("browser");
+        url = property.getProperty("url");
+        System.out.println("test1");
+        property.load(new FileInputStream("src/test/java/config/application.properties"));
+        System.setProperty("browser", browser);
+
+        browser = property.getProperty("db.browser");
+        url = property.getProperty("db.url");
+
     }
+
+
 
     @Test
     public void Test() {

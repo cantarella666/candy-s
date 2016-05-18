@@ -1,5 +1,5 @@
 package lib;
-import static lib.BeforeClass.*;
+import static test.java.StudyTest.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -33,6 +33,7 @@ public static void createWebDriver(){
 
 
     DesiredCapabilities capabilities = new DesiredCapabilities();
+
     switch (System.getProperty(browser)){
         case "firefox":
             capabilities.setBrowserName("firefox");
