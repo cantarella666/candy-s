@@ -1,7 +1,5 @@
 package com.mycompany.app;
 
-
-
 import com.mycompany.app.StepDetinitions.CommonStepDetinition;
 import com.mycompany.app.lib.Init;
 import org.junit.AfterClass;
@@ -24,23 +22,12 @@ public class StudyTest {
 
     @BeforeClass
     public static void BeforeClass() throws IOException {
-        Properties property = new Properties();
-
-
         System.out.println("test1");
+        Properties property = new Properties();
         property.load(new FileInputStream("src/test/java/config/application.properties"));
-
-        //System.setProperty("browser", property.getProperty("browser"));
-       /* browser = property.getProperty("browser");
-        url = property.getProperty("url");*/
-        //String strngBrowser = "browser";
-        //String strngUrl = "url";
-        Init.setStashElement(Stash, "browser", property.getProperty("browser"));
-        Init.setStashElement(Stash, "url", property.getProperty("url"));
-        //System.setProperty("url", property.getProperty("url"));
-
-        /*browser = property.getProperty("db.browser");
-        url = property.getProperty("db.url");*/
+        Stash = getStash();
+        setStashElement("browser", property.getProperty("browser"));
+        setStashElement("url", property.getProperty("url"));
     }
 
 
@@ -48,6 +35,7 @@ public class StudyTest {
     @Test
     public void Test() {
         CommonStepDetinition study = new CommonStepDetinition();
+
 
         study.openInsuranceTravelTest();
         /*study.choosePolic();
