@@ -28,17 +28,24 @@ public class StudyTest {
         Stash = getStash();
         setStashElement("browser", property.getProperty("browser"));
         setStashElement("url", property.getProperty("url"));
+        setStashElement("base", property.getProperty("base"));
+        setStashElement("dost", property.getProperty("dost"));
+        setStashElement("dostSport", property.getProperty("dostSport"));
+        setStashElement("sport", property.getProperty("sport"));
+        setStashElement("dostSportPred", property.getProperty("dostSportPred"));
+        setStashElement("dostPredBag", property.getProperty("dostPredBag"));
+
     }
 
 
 
     @Test
-    public void Test() {
+    public void Test() throws InterruptedException {
         CommonStepDetinition study = new CommonStepDetinition();
 
 
         study.openInsuranceTravelTest();
-        /*study.choosePolic();
+        study.choosePolic();
         study.formalizationConformation();
         study.minInsurance();
         study.enoughPrice();
@@ -46,7 +53,7 @@ public class StudyTest {
         study.withSportBlock();
         study.fullTestSportBlock();
         study.providentBlock();
-        study.saveBag();*/
+        study.saveBag();
     }
 
 
@@ -55,6 +62,6 @@ public class StudyTest {
     @AfterClass
     public static void postCondition() {
         System.out.println("3");
-        getDriver().quit();
+        //getDriver().close();
     }
 }

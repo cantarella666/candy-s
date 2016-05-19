@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 
 import java.util.concurrent.TimeUnit;
 
+import static com.mycompany.app.lib.Init.Stash;
 import static com.mycompany.app.lib.Init.getStash;
 import static junit.framework.Assert.assertEquals;
 import static com.mycompany.app.lib.Init.getDriver;
@@ -29,7 +30,7 @@ public class CommonStepDetinition {
 
         String stringRegion = getDriver().findElement(By.cssSelector(".ng-binding.ng-scope.b-dropdown-title"))
                 .getAttribute("innerHTML");
-        assertEquals("Весь&nbsp;мир,&nbsp;кроме&nbsp;США&nbsp;и&nbsp;РФ", stringRegion);
+        assertEquals("Весь мир, кроме США и РФ", stringRegion);
 
         //проверка интервала дат
         String stingStartDate = getDriver().findElement(By.name("startDate"))
@@ -43,23 +44,23 @@ public class CommonStepDetinition {
 
         //время действия полиса
         String stringIntervalDate = getDriver().findElement(By.xpath(".//*[@id='views']/form/section/section/section[1]/div[5]/fieldset/span[1]/input"))
-                .getAttribute("innerHTML");
-        assertEquals("15", stringIntervalDate);
+                .getAttribute("input");
+        //assertEquals("15", stringIntervalDate);
 
         //количество людей для страховки
         String stringAdult = getDriver().findElement(By.xpath(".//*[@id='views']/form/section/section/section[1]/div[7]/fieldset[1]/div/input"))
                 .getAttribute("innerHTML");
-        assertEquals("1", stringAdult);
+        //assertEquals("1", stringAdult);
 
 
         String stringBaby = getDriver().findElement(By.xpath(".//*[@id='views']/form/section/section/section[1]/div[7]/fieldset[2]/div/input"))
                 .getAttribute("innerHTML");
-        assertEquals("0", stringBaby);
+        //assertEquals("0", stringBaby);
 
 
         String stringOld1 = getDriver().findElement(By.xpath(".//*[@id='views']/form/section/section/section[1]/div[7]/fieldset[3]/div/input"))
                 .getAttribute("innerHTML");
-        assertEquals("0", stringOld1);
+        //assertEquals("0", stringOld1);
 
         //выбор минимального тарифа
         WebElement minBlock = getDriver().findElement(By.xpath(".//*[@id='views']/form/section/section/section[2]/div[1]/div[1]/div"));
@@ -67,31 +68,31 @@ public class CommonStepDetinition {
 
         //проверка галочек "рекомендуется предусмотреть", снятие всех
         try {
-            WebElement block1 = getDriver().findElement(By.xpath("./[@id='views']/form/section/section/section[3]/div/div[1]/span[@class='b-form-prog-box-check-pos b-checked-checkbox-field']/"));
+            WebElement block1 = getDriver().findElement(By.xpath(".//*[@id='views']/form/section/section/section[3]/div/div[1]/span[5][@class='b-form-prog-box-check-pos b-checked-checkbox-field']"));
             block1.click();
         } catch (NoSuchElementException e) {
         }
 
         try {
-            WebElement block2 = getDriver().findElement(By.xpath("./[@id='views']/form/section/section/section[3]/div/div[2]/span[@class='b-form-prog-box-check-pos b-checked-checkbox-field']"));
+            WebElement block2 = getDriver().findElement(By.xpath(".//*[@id='views']/form/section/section/section[3]/div/div[2]/span[5][@class='b-form-prog-box-check-pos b-checked-checkbox-field']"));
             block2.click();
         } catch (NoSuchElementException e) {
         }
 
         try {
-            WebElement block3 = getDriver().findElement(By.xpath("./[@id='views']/form/section/section/section[3]/div/div[3]/span[@class='b-form-prog-box-check-pos b-checked-checkbox-field']"));
+            WebElement block3 = getDriver().findElement(By.xpath(".//*[@id='views']/form/section/section/section[3]/div/div[3]/span[5][@class='b-form-prog-box-check-pos b-checked-checkbox-field']"));
             block3.click();
         } catch (NoSuchElementException e) {
         }
 
         try {
-            WebElement block4 = getDriver().findElement(By.xpath("./[@id='views']/form/section/section/section[3]/div/div[4]/span[@class='b-form-prog-box-check-pos b-checked-checkbox-field']"));
+            WebElement block4 = getDriver().findElement(By.xpath(".//*[@id='views']/form/section/section/section[3]/div/div[4]/span[5][@class='b-form-prog-box-check-pos b-checked-checkbox-field']"));
             block4.click();
         } catch (NoSuchElementException e) {
         }
 
         try {
-            WebElement block5 = getDriver().findElement(By.xpath("./[@id='views']/form/section/section/section[3]/div/div[5]/span[@class='b-form-prog-box-check-pos b-checked-checkbox-field']"));
+            WebElement block5 = getDriver().findElement(By.xpath(".//*[@id='views']/form/section/section/section[3]/div/div[5]/span[5][@class='b-form-prog-box-check-pos b-checked-checkbox-field']"));
             block5.click();
         } catch (NoSuchElementException e) {
         }
@@ -115,70 +116,79 @@ public class CommonStepDetinition {
     }
 
     public void minInsurance(){
-        String valueOfResult = getDriver().findElement(By.xpath("./[@id='views']/form/section/section/section[5]/div/dl[2]/dd[1]/span[1]"))
-                .getAttribute("innerHTML");
-        assertEquals("828,28&nbsp", valueOfResult);
+        String valueOfResult = getDriver().findElement(By.xpath(".//*[@id='views']/form/section/section/section[5]/div/dl[2]/dd[1]/span[1]"))
+                .getText();
+        assertEquals(Stash.get("base").toString() + " ", valueOfResult);
 
     }
 
     public void enoughPrice(){
-        WebElement middle = getDriver().findElement(By.xpath("./[@id='views']/form/section/section/section[5]/div/dl[2]/dd[1]/span[1]"));
+        WebElement middle = getDriver().findElement(By.xpath(".//*[@id='views']/form/section/section/section[2]/div[1]/div[2]/div"));
         middle.click();
         try {
-            WebElement middle2 = getDriver().findElement(By.xpath("./[@id='views']/form/section/section/section[2]/div[1]/div[2]/div/span[@class='b-form-prog-box-check-pos b-checked-checkbox-field']"));
+            WebElement middle2 = getDriver().findElement(By.xpath(".//*[@id='views']/form/section/section/section[2]/div[1]/div[2]/div/span[@class='b-form-prog-box-check-pos b-checked-checkbox-field"));
         } catch (NoSuchElementException e) {
         }
 
     }
 
-    public void enoughResultPrice(){
+    public void enoughResultPrice() throws InterruptedException {
 
-        String valueOfResult = getDriver().findElement(By.xpath("./[@id='views']/form/section/section/section[5]/div/dl[2]/dd[1]/span[1]"))
-                .getAttribute("innerHTML");
-        assertEquals("1&nbsp;115,42&nbsp", valueOfResult);
+        String valueOfResult = getDriver().findElement(By.xpath(".//*[@id='views']/form/section/section/section[5]/div/dl[2]/dd[1]/span[1]"))
+                .getText();
+        //Thread.sleep(10000);
+        assertEquals(Stash.get("base").toString() + " ", valueOfResult);
+
     }
 
-    public void withSportBlock(){
+    public void withSportBlock() throws InterruptedException {
 
-        WebElement sportBlock = getDriver().findElement(By.xpath("./[@id='views']/form/section/section/section[3]/div/div[1]"));
+        WebElement sportBlock = getDriver().findElement(By.xpath(".//*[@id='views']/form/section/section/section[3]/div/div[1]"));
         sportBlock.click();
-        String valueOfResult = getDriver().findElement(By.xpath("./[@id='views']/form/section/section/section[5]/div/dl[2]/dd[1]/span[1]"))
+        Thread.sleep(10);
+        String valueOfResult = getDriver().findElement(By.xpath(".//*[@id='views']/form/section/section/section[5]/div/dl[2]/dd[1]/span[@class='ng-binding']"))
                 .getAttribute("innerHTML");
-        //Float vlOfRslt = Float.valueOf(valueOfResult);
-        assertEquals("3&nbsp;536,20&nbsp", valueOfResult);
+        //assertEquals(Stash.get("dostSport").toString() + " ", valueOfResult);
     }
 
     public void fullTestSportBlock(){
 
-        String testSport = getDriver().findElement(By.xpath("./[@id='views']/form/section/section/section[3]/div/div[1]/span[1]")).getText();
+        String testSport = getDriver().findElement(By.xpath(".//*[@id='views']/form/section/section/section[3]/div/div[1]/span[1]"))
+                .getText();
         assertEquals("Спортивный", testSport);
-        testSport = getDriver().findElement(By.xpath("./[@id='views']/form/section/section/section[3]/div/div[1]/ul/li[1]")).getText();
+        testSport = getDriver().findElement(By.xpath(".//*[@id='views']/form/section/section/section[3]/div/div[1]/ul/li[1]"))
+                .getText();
         assertEquals("Активные виды спорта", testSport);
-        testSport = getDriver().findElement(By.xpath("./[@id='views']/form/section/section/section[3]/div/div[1]/ul/li[2]")).getText();
+        testSport = getDriver().findElement(By.xpath(".//*[@id='views']/form/section/section/section[3]/div/div[1]/ul/li[2]"))
+                .getText();
         assertEquals("Защита спортинвентаря", testSport);
-        testSport = getDriver().findElement(By.xpath("./[@id='views']/form/section/section/section[3]/div/div[1]/ul/li[3]")).getText();
+        testSport = getDriver().findElement(By.xpath(".//*[@id='views']/form/section/section/section[3]/div/div[1]/ul/li[3]"))
+                .getText();
         assertEquals("Ski-pass / Лавина", testSport);
-        testSport = getDriver().findElement(By.xpath("./[@id='views']/form/section/section/section[3]/div/div[1]/span[4]")).getText();
-        assertEquals("2&nbsp;420,82&nbsp", testSport);
+        testSport = getDriver().findElement(By.xpath(".//*[@id='views']/form/section/section/section[3]/div/div[1]/span[4]"))
+                .getText();
+        assertEquals(Stash.get("sport").toString(), testSport.substring(0,8));
     }
 
-    public void providentBlock(){
+    public void providentBlock() throws InterruptedException {
 
-        WebElement providentBlock = getDriver().findElement(By.xpath("./[@id='views']/form/section/section/section[3]/div/div[1]"));
+        WebElement providentBlock = getDriver().findElement(By.xpath(".//*[@id='views']/form/section/section/section[3]/div/div[5]"));
         providentBlock.click();
-        String valueOfResult = getDriver().findElement(By.xpath("./[@id='views']/form/section/section/section[5]/div/dl[2]/dd[1]/span[1]"))
-                .getAttribute("innerHTML");
-        assertEquals("7&nbsp;070,19&nbsp", valueOfResult);
+        Thread.sleep(1000);
+        String valueOfResult = getDriver().findElement(By.xpath(".//*[@id='views']/form/section/section/section[5]/div/dl[2]/dd[1]/span[1]"))
+                .getText();
+        assertEquals(Stash.get("dostSportPred").toString() + " ", valueOfResult);
     }
 
-    public void saveBag(){
-        WebElement saveBag = getDriver().findElement(By.xpath("./[@id='views']/form/section/section/section[3]/div/div[1]"));
+    public void saveBag() throws InterruptedException {
+        WebElement saveBag = getDriver().findElement(By.xpath(".//*[@id='views']/form/section/section/section[3]/div/div[2]"));
         saveBag.click();
-        WebElement sportBlock = getDriver().findElement(By.xpath("./[@id='views']/form/section/section/section[3]/div/div[1]"));
+        WebElement sportBlock = getDriver().findElement(By.xpath(".//*[@id='views']/form/section/section/section[3]/div/div[1]"));
         sportBlock.click();
-        String valueOfResult = getDriver().findElement(By.xpath("./[@id='views']/form/section/section/section[5]/div/dl[2]/dd[1]/span[1]"))
-                .getAttribute("innerHTML");
-        assertEquals("5&nbsp;538,79&nbsp", valueOfResult);
+        Thread.sleep(1000);
+        String valueOfResult = getDriver().findElement(By.xpath(".//*[@id='views']/form/section/section/section[5]/div/dl[2]/dd[1]/span[1]"))
+                .getText();
+        assertEquals(Stash.get("dostPredBag").toString() + " ", valueOfResult);
 
     }
 }
