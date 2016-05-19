@@ -4,8 +4,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 
+import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
+import static com.mycompany.app.lib.Init.Stash;
 import static junit.framework.Assert.assertEquals;
 import static com.mycompany.app.lib.Init.getDriver;
 import static junit.framework.Assert.assertNotNull;
@@ -15,9 +17,10 @@ import static junit.framework.Assert.assertNotNull;
  * Created by cantarella on 18.05.2016.
  */
 public class CommonStepDetinition {
-    public void openInsuranceTravelTest(String url){
-
-        getDriver().get(url);
+    public void openInsuranceTravelTest(){
+        //String strngUrl = "url";
+        //String url = Stash.get(strngUrl).toString();
+        getDriver().get(Stash.get("url").toString());
         getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
         String stringTitle = getDriver().findElement(By.xpath("html/body/div[1]/header/div/h2"))
