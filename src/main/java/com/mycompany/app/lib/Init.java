@@ -2,11 +2,10 @@ package com.mycompany.app.lib;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.support.ui.Wait;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
 
@@ -22,8 +21,6 @@ public class Init {
     public static WebDriver getDriver() {
         if (null == driver) {
             createWebDriver();
-            //WebDriver driver = new FirefoxDriver();
-            //driver.get("https://online.sberbankins.ru/store/vzr/index.html#/viewCalc");
         }
         return driver;
 
@@ -59,10 +56,15 @@ public class Init {
                 setDriver(new FirefoxDriver(capabilities));
                 break;
             case "chrome":
-                File chromeDriver = new File("C:/Users/cantarella/my-app/candy-s/src/test/resources/webdrivers/chromedriver.exe");
-                System.setProperty("webdriver.chrome.driver", chromeDriver.getAbsolutePath());
-                capabilities.setBrowserName("chrome");
-                setDriver(new ChromeDriver(capabilities));
+                /*File chromeDriver = new File("C:/Users/cantarella/my-app/candy-s/src/test/resources/webdrivers/chromedriver.exe");
+                System.setProperty("webdriver.chrome.driver", chromeDriver.getAbsolutePath());*/
+                /*capabilities.setCapability("webdriver.chrome.driver", getStash().get("webdriver.chrome.driver"));
+                setDriver(new ChromeDriver(capabilities));*/
+                /*HashMap<String, Object> chromeOptions = new HashMap<String, Object>();
+                chromeOptions.put("binary", "/usr/lib/chromium-browser/chromium-browser");
+                DesiredCapabilities capabilities = DesiredCapabilities.chrome();
+                capabilities.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
+                WebDriver driver = new ChromeDriver(capabilities);*/
                 break;
             case "ie":
                 File IEDriver = new File("C:/Users/cantarella/my-app/candy-s/src/test/resources/webdrivers/IEDriverServer.exe");

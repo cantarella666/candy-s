@@ -28,6 +28,7 @@ public class StudyTest {
         Stash = getStash();
         setStashElement("browser", property.getProperty("browser"));
         setStashElement("url", property.getProperty("url"));
+        setStashElement("webdriver.chrome.driver", property.getProperty("webdriver.chrome.driver"));
         setStashElement("base", property.getProperty("base"));
         setStashElement("dost", property.getProperty("dost"));
         setStashElement("dostSport", property.getProperty("dostSport"));
@@ -61,7 +62,6 @@ public class StudyTest {
 
     @AfterClass
     public static void postCondition() {
-        System.out.println("3");
         getDriver().close();
     }
 }
