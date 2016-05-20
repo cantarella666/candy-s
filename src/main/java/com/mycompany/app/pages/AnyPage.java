@@ -4,6 +4,8 @@ import com.mycompany.app.lib.Init;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import static com.mycompany.app.lib.Init.getDriver;
 
@@ -23,7 +25,10 @@ public abstract class AnyPage {
     }
 
     public void click(WebElement element){
+        PageFactory.initElements(Init.getDriver(), this);
+        new WebDriverWait(Init.getDriver(), 30).until(ExpectedConditions.elementToBeClickable(element));
         element.click();
+
         //ожидание логирование и т д обвеску сюда вписывать
 
     }
