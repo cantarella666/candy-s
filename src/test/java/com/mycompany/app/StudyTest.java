@@ -2,6 +2,7 @@ package com.mycompany.app;
 
 import com.mycompany.app.StepDetinitions.CommonStepDetinition;
 import com.mycompany.app.lib.Init;
+import com.mycompany.app.pages.InsuranceTravelPage;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -17,8 +18,6 @@ import static com.mycompany.app.lib.Init.*;
  * Created by cantarella on 14.05.2016.
  */
 public class StudyTest {
-    public static String url;
-    public static String browser;
 
     @BeforeClass
     public static void BeforeClass() throws IOException {
@@ -28,7 +27,8 @@ public class StudyTest {
         Stash = getStash();
         setStashElement("browser", property.getProperty("browser"));
         setStashElement("url", property.getProperty("url"));
-        setStashElement("webdriver.chrome.driver", property.getProperty("webdriver.chrome.driver"));
+        setStashElement("filechrome", property.getProperty("filechrome"));
+        setStashElement("fileie", property.getProperty("fileie"));
         setStashElement("base", property.getProperty("base"));
         setStashElement("dost", property.getProperty("dost"));
         setStashElement("dostSport", property.getProperty("dostSport"));
@@ -43,10 +43,11 @@ public class StudyTest {
     @Test
     public void Test() throws InterruptedException {
         CommonStepDetinition study = new CommonStepDetinition();
-
-
         study.openInsuranceTravelTest();
-        study.choosePolic();
+        InsuranceTravelPage insuranceTravelPage = new InsuranceTravelPage();
+        insuranceTravelPage.choosePolic();
+        study.openInsuranceTravelTest();
+        //study.choosePolic();
         study.formalizationConformation();
         study.minInsurance();
         study.enoughPrice();
@@ -62,6 +63,7 @@ public class StudyTest {
 
     @AfterClass
     public static void postCondition() {
+        clearStash();
         getDriver().close();
     }
 }

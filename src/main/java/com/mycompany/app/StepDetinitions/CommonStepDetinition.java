@@ -1,6 +1,5 @@
 package com.mycompany.app.StepDetinitions;
 
-import com.mycompany.app.lib.Init;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
@@ -27,76 +26,7 @@ public class CommonStepDetinition {
         assertEquals("Страхование путешественников", stringTitle);
     }
 
-    public void choosePolic(){
 
-        String stringRegion = getDriver().findElement(By.cssSelector(".ng-binding.ng-scope.b-dropdown-title"))
-                .getAttribute("innerHTML");
-        assertEquals("Весь мир, кроме США и РФ", stringRegion);
-
-        //проверка интервала дат
-        String stingStartDate = getDriver().findElement(By.name("startDate"))
-                .getText();
-        assertNotNull(stingStartDate);
-
-
-        String stingFinishDate = getDriver().findElement(By.id("finishDate"))
-                .getText();
-        assertNotNull(stingFinishDate);
-
-        //время действия полиса
-        WebElement intervalDate = getDriver().findElement(By.xpath(".//*[@id='views']/form/section/section/section[1]/div[5]/fieldset/span[1]/input"));
-        String stringIntervalDate = intervalDate.getAttribute("value");
-        assertEquals("15", stringIntervalDate);
-
-        //количество людей для страховки
-        WebElement adult = getDriver().findElement(By.xpath(".//*[@id='views']/form/section/section/section[1]/div[7]/fieldset[1]/div/input"));
-        String stringAdult = adult.getAttribute("value");
-        assertEquals("1", stringAdult);
-
-        WebElement baby = getDriver().findElement(By.xpath(".//*[@id='views']/form/section/section/section[1]/div[7]/fieldset[2]/div/input"));
-        String stringBaby = baby.getAttribute("value");
-        assertEquals("0", stringBaby);
-
-        WebElement old = getDriver().findElement(By.xpath(".//*[@id='views']/form/section/section/section[1]/div[7]/fieldset[3]/div/input"));
-        String stringOld = old.getAttribute("value");
-        assertEquals("0", stringOld);
-
-        //выбор минимального тарифа
-        WebElement minBlock = getDriver().findElement(By.xpath(".//*[@id='views']/form/section/section/section[2]/div[1]/div[1]/div"));
-        minBlock.click();
-
-        //проверка галочек "рекомендуется предусмотреть", снятие всех
-        try {
-            WebElement block1 = getDriver().findElement(By.xpath(".//*[@id='views']/form/section/section/section[3]/div/div[1]/span[5][@class='b-form-prog-box-check-pos b-checked-checkbox-field']"));
-            block1.click();
-        } catch (NoSuchElementException e) {
-        }
-
-        try {
-            WebElement block2 = getDriver().findElement(By.xpath(".//*[@id='views']/form/section/section/section[3]/div/div[2]/span[5][@class='b-form-prog-box-check-pos b-checked-checkbox-field']"));
-            block2.click();
-        } catch (NoSuchElementException e) {
-        }
-
-        try {
-            WebElement block3 = getDriver().findElement(By.xpath(".//*[@id='views']/form/section/section/section[3]/div/div[3]/span[5][@class='b-form-prog-box-check-pos b-checked-checkbox-field']"));
-            block3.click();
-        } catch (NoSuchElementException e) {
-        }
-
-        try {
-            WebElement block4 = getDriver().findElement(By.xpath(".//*[@id='views']/form/section/section/section[3]/div/div[4]/span[5][@class='b-form-prog-box-check-pos b-checked-checkbox-field']"));
-            block4.click();
-        } catch (NoSuchElementException e) {
-        }
-
-        try {
-            WebElement block5 = getDriver().findElement(By.xpath(".//*[@id='views']/form/section/section/section[3]/div/div[5]/span[5][@class='b-form-prog-box-check-pos b-checked-checkbox-field']"));
-            block5.click();
-        } catch (NoSuchElementException e) {
-        }
-
-    }
 
     public void formalizationConformation(){
         try {

@@ -2,12 +2,9 @@ package com.mycompany.app.lib;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
-
-import java.io.File;
 
 import java.util.HashMap;
 
@@ -45,6 +42,9 @@ public class Init {
 
     }
 
+    public static void clearStash(){
+        Stash.clear();
+    }
 
     public static void createWebDriver() {
 
@@ -56,20 +56,11 @@ public class Init {
                 setDriver(new FirefoxDriver(capabilities));
                 break;
             case "chrome":
-                /*File chromeDriver = new File("C:/Users/cantarella/my-app/candy-s/src/test/resources/webdrivers/chromedriver.exe");
-                System.setProperty("webdriver.chrome.driver", chromeDriver.getAbsolutePath());*/
-                /*capabilities.setCapability("webdriver.chrome.driver", getStash().get("webdriver.chrome.driver"));
-                setDriver(new ChromeDriver(capabilities));*/
-                /*HashMap<String, Object> chromeOptions = new HashMap<String, Object>();
-                chromeOptions.put("binary", "/usr/lib/chromium-browser/chromium-browser");
-                DesiredCapabilities capabilities = DesiredCapabilities.chrome();
-                capabilities.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
-                WebDriver driver = new ChromeDriver(capabilities);*/
+                System.setProperty("webdriver.chrome.driver", getStash().get("filechrome").toString());
+                setDriver(new ChromeDriver(capabilities));
                 break;
             case "ie":
-                File IEDriver = new File("C:/Users/cantarella/my-app/candy-s/src/test/resources/webdrivers/IEDriverServer.exe");
-                System.setProperty("webdriver.ie.driver", IEDriver.getAbsolutePath());
-                capabilities.setBrowserName("internet explorer");
+                System.setProperty("webdriver.internetexplorer.driver", getStash().get("fileie").toString());
                 setDriver(new InternetExplorerDriver(capabilities));
                 break;
             default:
