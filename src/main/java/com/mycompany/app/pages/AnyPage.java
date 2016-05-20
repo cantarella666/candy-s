@@ -1,6 +1,7 @@
 package com.mycompany.app.pages;
 
 import com.mycompany.app.lib.Init;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.WebElement;
@@ -37,6 +38,20 @@ public abstract class AnyPage {
     public void click(By by){
         WebElement element = getDriver().findElement(by);
         element.click();
+    }
+    //clear
+    //setText(установить значение, clear)
+    //select для выпадающих настоящих
+    //select для ненастоящих
+    //чекбоксы
+    //JavaDoc
+    /**
+     *
+     * @param string
+     * @param element
+     */
+    public void AssertEquals(String string, WebElement element){
+        Assert.assertEquals(string, element.getText());
 
     }
 
