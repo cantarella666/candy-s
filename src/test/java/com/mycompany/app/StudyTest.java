@@ -62,6 +62,6 @@ public class StudyTest {
     @AfterClass
     public static void postCondition() {
         System.out.println("3");
-        //getDriver().close();
+        getDriver().close();
     }
 }

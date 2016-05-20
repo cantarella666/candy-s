@@ -5,6 +5,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.File;
 
@@ -32,8 +34,6 @@ public class Init {
     }
 
 
-
-
     public static HashMap Stash;
 
     public static HashMap getStash() {
@@ -47,6 +47,7 @@ public class Init {
 
 
     }
+
 
     public static void createWebDriver() {
 

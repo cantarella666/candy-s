@@ -1,5 +1,6 @@
 package com.mycompany.app.StepDetinitions;
 
+import com.mycompany.app.lib.Init;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
@@ -43,24 +44,22 @@ public class CommonStepDetinition {
         assertNotNull(stingFinishDate);
 
         //время действия полиса
-        String stringIntervalDate = getDriver().findElement(By.xpath(".//*[@id='views']/form/section/section/section[1]/div[5]/fieldset/span[1]/input"))
-                .getAttribute("input");
-        //assertEquals("15", stringIntervalDate);
+        WebElement intervalDate = getDriver().findElement(By.xpath(".//*[@id='views']/form/section/section/section[1]/div[5]/fieldset/span[1]/input"));
+        String stringIntervalDate = intervalDate.getAttribute("value");
+        assertEquals("15", stringIntervalDate);
 
         //количество людей для страховки
-        String stringAdult = getDriver().findElement(By.xpath(".//*[@id='views']/form/section/section/section[1]/div[7]/fieldset[1]/div/input"))
-                .getAttribute("innerHTML");
-        //assertEquals("1", stringAdult);
+        WebElement adult = getDriver().findElement(By.xpath(".//*[@id='views']/form/section/section/section[1]/div[7]/fieldset[1]/div/input"));
+        String stringAdult = adult.getAttribute("value");
+        assertEquals("1", stringAdult);
 
+        WebElement baby = getDriver().findElement(By.xpath(".//*[@id='views']/form/section/section/section[1]/div[7]/fieldset[2]/div/input"));
+        String stringBaby = baby.getAttribute("value");
+        assertEquals("0", stringBaby);
 
-        String stringBaby = getDriver().findElement(By.xpath(".//*[@id='views']/form/section/section/section[1]/div[7]/fieldset[2]/div/input"))
-                .getAttribute("innerHTML");
-        //assertEquals("0", stringBaby);
-
-
-        String stringOld1 = getDriver().findElement(By.xpath(".//*[@id='views']/form/section/section/section[1]/div[7]/fieldset[3]/div/input"))
-                .getAttribute("innerHTML");
-        //assertEquals("0", stringOld1);
+        WebElement old = getDriver().findElement(By.xpath(".//*[@id='views']/form/section/section/section[1]/div[7]/fieldset[3]/div/input"));
+        String stringOld = old.getAttribute("value");
+        assertEquals("0", stringOld);
 
         //выбор минимального тарифа
         WebElement minBlock = getDriver().findElement(By.xpath(".//*[@id='views']/form/section/section/section[2]/div[1]/div[1]/div"));
@@ -122,9 +121,10 @@ public class CommonStepDetinition {
 
     }
 
-    public void enoughPrice(){
+    public void enoughPrice() throws InterruptedException{
         WebElement middle = getDriver().findElement(By.xpath(".//*[@id='views']/form/section/section/section[2]/div[1]/div[2]/div"));
         middle.click();
+        TimeUnit.SECONDS.sleep(5);
         try {
             WebElement middle2 = getDriver().findElement(By.xpath(".//*[@id='views']/form/section/section/section[2]/div[1]/div[2]/div/span[@class='b-form-prog-box-check-pos b-checked-checkbox-field"));
         } catch (NoSuchElementException e) {
@@ -133,11 +133,11 @@ public class CommonStepDetinition {
     }
 
     public void enoughResultPrice() throws InterruptedException {
-
+        TimeUnit.SECONDS.sleep(5);
         String valueOfResult = getDriver().findElement(By.xpath(".//*[@id='views']/form/section/section/section[5]/div/dl[2]/dd[1]/span[1]"))
                 .getText();
-        //Thread.sleep(10000);
-        assertEquals(Stash.get("base").toString() + " ", valueOfResult);
+
+        assertEquals(Stash.get("dost").toString() + " ", valueOfResult);
 
     }
 
@@ -145,10 +145,10 @@ public class CommonStepDetinition {
 
         WebElement sportBlock = getDriver().findElement(By.xpath(".//*[@id='views']/form/section/section/section[3]/div/div[1]"));
         sportBlock.click();
-        Thread.sleep(10);
-        String valueOfResult = getDriver().findElement(By.xpath(".//*[@id='views']/form/section/section/section[5]/div/dl[2]/dd[1]/span[@class='ng-binding']"))
-                .getAttribute("innerHTML");
-        //assertEquals(Stash.get("dostSport").toString() + " ", valueOfResult);
+        TimeUnit.SECONDS.sleep(5);
+        WebElement rslt = getDriver().findElement(By.xpath(".//*[@id='views']/form/section/section/section[5]/div/dl[2]/dd[1]/span[@class='ng-binding']"));
+        String valueOfResult = rslt.getText();
+        assertEquals(Stash.get("dostSport").toString() + " ", valueOfResult);
     }
 
     public void fullTestSportBlock(){
@@ -174,7 +174,7 @@ public class CommonStepDetinition {
 
         WebElement providentBlock = getDriver().findElement(By.xpath(".//*[@id='views']/form/section/section/section[3]/div/div[5]"));
         providentBlock.click();
-        Thread.sleep(1000);
+        TimeUnit.SECONDS.sleep(5);
         String valueOfResult = getDriver().findElement(By.xpath(".//*[@id='views']/form/section/section/section[5]/div/dl[2]/dd[1]/span[1]"))
                 .getText();
         assertEquals(Stash.get("dostSportPred").toString() + " ", valueOfResult);
@@ -185,7 +185,7 @@ public class CommonStepDetinition {
         saveBag.click();
         WebElement sportBlock = getDriver().findElement(By.xpath(".//*[@id='views']/form/section/section/section[3]/div/div[1]"));
         sportBlock.click();
-        Thread.sleep(1000);
+        TimeUnit.SECONDS.sleep(5);
         String valueOfResult = getDriver().findElement(By.xpath(".//*[@id='views']/form/section/section/section[5]/div/dl[2]/dd[1]/span[1]"))
                 .getText();
         assertEquals(Stash.get("dostPredBag").toString() + " ", valueOfResult);
