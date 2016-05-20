@@ -27,6 +27,7 @@ public abstract class AnyPage {
     public void click(WebElement element){
         PageFactory.initElements(Init.getDriver(), this);
         new WebDriverWait(Init.getDriver(), 30).until(ExpectedConditions.elementToBeClickable(element));
+        System.out.println("click to element" + element.getText());
         element.click();
 
         //ожидание логирование и т д обвеску сюда вписывать
