@@ -21,7 +21,7 @@ import static junit.framework.Assert.assertNotNull;
 /**
  * Created by cantarella on 20.05.2016.
  */
-public class InsuranceTravelPage extends AnyPage{
+public class CurrenncyConverter extends AnyPage{
 
 
 }

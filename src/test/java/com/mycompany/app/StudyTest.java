@@ -1,7 +1,7 @@
 package com.mycompany.app;
 
 import com.mycompany.app.StepDetinitions.CommonStepDetinition;
-import com.mycompany.app.pages.InsuranceTravelPage;
+import com.mycompany.app.pages.CurrenncyConverter;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -43,16 +43,8 @@ public class StudyTest {
     public void Test() throws InterruptedException {
         CommonStepDetinition study = new CommonStepDetinition();
         study.openInsuranceTravelTest();
-        InsuranceTravelPage insuranceTravelPage = new InsuranceTravelPage();
-        insuranceTravelPage.choosePolic();
-        insuranceTravelPage.formalizationConformation();
-        insuranceTravelPage.minInsurance();
-        insuranceTravelPage.enoughPrice();
-        insuranceTravelPage.enoughResultPrice();
-        insuranceTravelPage.withSportBlock();
-        insuranceTravelPage.fullTestSportBlock();
-        insuranceTravelPage.providentBlock();
-        insuranceTravelPage.saveBag();
+        CurrenncyConverter currenncyConverter = new CurrenncyConverter();
+
     }
 
 
