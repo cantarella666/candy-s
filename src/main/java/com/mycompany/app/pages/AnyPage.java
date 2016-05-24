@@ -31,6 +31,20 @@ public abstract class AnyPage {
         element.click();
         //ожидание логирование и т д обвеску сюда вписывать
     }
+
+    public void isChecked(WebElement element){
+        PageFactory.initElements(Init.getDriver(), this);
+        if (!element.isSelected()){
+            click(element);
+        }
+    }
+
+    public void notChecked(WebElement element){
+        PageFactory.initElements(Init.getDriver(), this);
+        if (element.isSelected()){
+            click(element);
+        }
+    }
     //clear
     //setText(установить значение, clear)
     //select для выпадающих настоящих
@@ -53,6 +67,11 @@ public abstract class AnyPage {
 
     public void assertEqualsValue(String string, WebElement element){
         Assert.assertEquals(string, element.getAttribute("value"));
+
+    }
+
+    public void assertNotNull(WebElement element){
+        Assert.assertNotNull(element.getText());
 
     }
 

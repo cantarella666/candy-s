@@ -1,6 +1,5 @@
 package com.mycompany.app;
 
-import com.mycompany.app.StepDetinitions.CommonStepDetinition;
 import com.mycompany.app.pages.CurrenncyConverter;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -10,6 +9,7 @@ import org.junit.Test;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
+import java.util.concurrent.TimeUnit;
 
 import static com.mycompany.app.lib.Init.*;
 
@@ -41,9 +41,15 @@ public class StudyTest {
 
     @Test
     public void Test() throws InterruptedException {
-        CommonStepDetinition study = new CommonStepDetinition();
-        study.openInsuranceTravelTest();
+
+        getDriver().get(getStash().get("url").toString());
+        TimeUnit.SECONDS.sleep(20);
         CurrenncyConverter currenncyConverter = new CurrenncyConverter();
+        currenncyConverter.searchATM();
+        currenncyConverter.open();
+        currenncyConverter.branchSelected();
+        currenncyConverter.branchNotNull();
+        currenncyConverter.allBranches();
 
     }
 
