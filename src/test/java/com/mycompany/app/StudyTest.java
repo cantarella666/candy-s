@@ -46,16 +46,14 @@ public class StudyTest {
         study.openInsuranceTravelTest();
         InsuranceTravelPage insuranceTravelPage = new InsuranceTravelPage();
         insuranceTravelPage.choosePolic();
-        study.openInsuranceTravelTest();
-        //study.choosePolic();
-        study.formalizationConformation();
-        study.minInsurance();
-        study.enoughPrice();
-        study.enoughResultPrice();
-        study.withSportBlock();
-        study.fullTestSportBlock();
-        study.providentBlock();
-        study.saveBag();
+        insuranceTravelPage.formalizationConformation();
+        insuranceTravelPage.minInsurance();
+        insuranceTravelPage.enoughPrice();
+        insuranceTravelPage.enoughResultPrice();
+        insuranceTravelPage.withSportBlock();
+        insuranceTravelPage.fullTestSportBlock();
+        insuranceTravelPage.providentBlock();
+        insuranceTravelPage.saveBag();
     }
 
 

@@ -2,7 +2,7 @@ package com.mycompany.app.pages;
 
 import com.mycompany.app.lib.Init;
 import org.junit.Assert;
-import org.openqa.selenium.By;
+
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -22,22 +22,14 @@ public abstract class AnyPage {
     public void waitPageToLoad(){
         //браузер отдал управление страницей. javascript
         //у страницы есть статусы загрузки. проверка через compire
-
     }
 
     public void click(WebElement element){
         PageFactory.initElements(Init.getDriver(), this);
-        new WebDriverWait(Init.getDriver(), 30).until(ExpectedConditions.elementToBeClickable(element));
+        new WebDriverWait(Init.getDriver(), 10).until(ExpectedConditions.elementToBeClickable(element));
         System.out.println("click to element" + element.getText());
         element.click();
-
         //ожидание логирование и т д обвеску сюда вписывать
-
-    }
-
-    public void click(By by){
-        WebElement element = getDriver().findElement(by);
-        element.click();
     }
     //clear
     //setText(установить значение, clear)
@@ -50,8 +42,17 @@ public abstract class AnyPage {
      * @param string
      * @param element
      */
-    public void AssertEquals(String string, WebElement element){
+    public void assertEqualsText(String string, WebElement element){
         Assert.assertEquals(string, element.getText());
+
+    }
+    public void assertEqualsInnerHTML(String string, WebElement element){
+        Assert.assertEquals(string, element.getAttribute("innerHTML"));
+
+    }
+
+    public void assertEqualsValue(String string, WebElement element){
+        Assert.assertEquals(string, element.getAttribute("value"));
 
     }
 
