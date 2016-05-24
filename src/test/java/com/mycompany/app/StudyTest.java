@@ -1,7 +1,6 @@
 package com.mycompany.app;
 
 import com.mycompany.app.StepDetinitions.CommonStepDetinition;
-import com.mycompany.app.lib.Init;
 import com.mycompany.app.pages.InsuranceTravelPage;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
