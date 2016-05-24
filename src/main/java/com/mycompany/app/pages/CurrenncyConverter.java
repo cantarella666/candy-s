@@ -29,11 +29,21 @@ public class CurrenncyConverter extends AnyPage{
     @FindBy(xpath = "//input[@id='map-filter-type-filial']")
     private WebElement branch;
 
+    @FindBy(xpath = "//label[@for='map-filter-type-filial']")
+    private WebElement branchChecked;
+
     @FindBy(xpath = "//div[@class='branch-list-item-block']/a/span")
     private WebElement branchFirst;
 
     @FindBy(xpath = "//div[@id='branchList']")
     private WebElement branchList;
+
+    @FindBy(xpath = "//input[@id='map-filter-type-terminal']")
+    private WebElement trmnl;
+
+    @FindBy(xpath = "//label[@for='map-filter-type-terminal']")
+    private WebElement trmnlChecked;
+
 
     public void searchATM(){
         PageFactory.initElements(Init.getDriver(), this);
@@ -46,7 +56,7 @@ public class CurrenncyConverter extends AnyPage{
     }
 
     public void branchSelected(){
-        isChecked(branch);
+        isChecked(branch, branchChecked);
 
     }
 
@@ -59,30 +69,22 @@ public class CurrenncyConverter extends AnyPage{
     }
 
     public void allBranches(){
-        int k = 1;
-//        WebElement branch1 = getDriver().findElement(By.xpath("//div[@class='branch-list-item-block']/p[" + k + "]"));
-//        Pattern pat = Pattern.compile("[-]?[0-9]+(.[0-9]+)?");
-//        Matcher matcher=pat.matcher(branch1.getText());
-//        while (matcher.find()) {
-//            System.out.println(matcher.group());
-//        }
-        String[] allBrnch = new String[9];
-        for(int i=1; i<9; i++){
-            try {
-                WebElement branch1 = getDriver().findElement(By.xpath("//div[@id='branchList']/ul/li[" + i + "]/div/p[1]"));
-                Pattern pat = Pattern.compile("[-]?[0-9]+(.[0-9]+)?");
-                Matcher matcher=pat.matcher(branch1.getText());
-                while (matcher.find()) {
-                    String str = matcher.group();
-                    allBrnch[i] = str;
-                }
-                System.out.println(allBrnch[i]);
-            }catch (NoSuchElementException e){
-                break;
-            }
+        checkLocation();
+    }
 
-
+    public void terminal() throws InterruptedException {
+        isChecked(trmnl, trmnlChecked);
+        TimeUnit.SECONDS.sleep(5);
+        try{
+            WebElement trmnlFind = getDriver().findElement(By.xpath("//div[@id='branchList']/ul/li/div/span[@class='item-list-icon itt']"));
+        }catch (NoSuchElementException e){
+            System.out.println("Нет ближайших терминалов");
         }
+
+    }
+
+    public void allLocationOne(){
+        checkLocation();
 
 
     }

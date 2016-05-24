@@ -3,10 +3,15 @@ package com.mycompany.app.pages;
 import com.mycompany.app.lib.Init;
 import org.junit.Assert;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static com.mycompany.app.lib.Init.getDriver;
 
@@ -32,10 +37,10 @@ public abstract class AnyPage {
         //ожидание логирование и т д обвеску сюда вписывать
     }
 
-    public void isChecked(WebElement element){
+    public void isChecked(WebElement element1, WebElement element2){
         PageFactory.initElements(Init.getDriver(), this);
-        if (!element.isSelected()){
-            click(element);
+        if (!element1.isSelected()){
+            click(element2);
         }
     }
 
@@ -45,12 +50,32 @@ public abstract class AnyPage {
             click(element);
         }
     }
-    //clear
-    //setText(установить значение, clear)
-    //select для выпадающих настоящих
-    //select для ненастоящих
-    //чекбоксы
-    //JavaDoc
+
+    public void checkLocation(){
+        Double[] allBrnch = new Double[9];
+        for(int i=1; i<9; i++){
+            try {
+                WebElement branch1 = getDriver().findElement(By.xpath("//div[@id='branchList']/ul/li[" + i + "]/div/p[1]"));
+                Pattern pat = Pattern.compile("[-]?[0-9]+(.[0-9]+)?");
+                Matcher matcher=pat.matcher(branch1.getText());
+                while (matcher.find()) {
+                    String str = matcher.group();
+                    allBrnch[i] = Double.valueOf(str);
+
+                    if(allBrnch[i]>10.0){
+                        allBrnch[i]=(allBrnch[i]/1000.0);
+                    }
+
+                    if((i>1)&&(allBrnch[i]<allBrnch[i-1])){System.out.println("Отделения расположены не верно");}
+
+                }
+
+            }catch (NoSuchElementException e){
+                break;
+            }
+        }
+    }
+
     /**
      *
      * @param string
