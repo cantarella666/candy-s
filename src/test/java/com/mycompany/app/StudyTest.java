@@ -33,19 +33,6 @@ public class StudyTest {
     @Test
     public void Test() throws InterruptedException {
 
-        getDriver().get(getStash().get("url").toString());
-        TimeUnit.SECONDS.sleep(20);
-        CurrenncyConverter currenncyConverter = new CurrenncyConverter();
-        currenncyConverter.searchATM();
-        currenncyConverter.open();
-        currenncyConverter.branchSelected();
-        currenncyConverter.branchNotNull();
-        currenncyConverter.allBranches();
-        currenncyConverter.terminal();
-        currenncyConverter.allLocationOne();
-        currenncyConverter.newLocation();
-        currenncyConverter.delBranch();
-        currenncyConverter.checkWithoutBranches();
 
     }
 
