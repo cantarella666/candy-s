@@ -26,15 +26,6 @@ public class StudyTest {
         Stash = getStash();
         setStashElement("browser", property.getProperty("browser"));
         setStashElement("url", property.getProperty("url"));
-        setStashElement("filechrome", property.getProperty("filechrome"));
-        setStashElement("fileie", property.getProperty("fileie"));
-        setStashElement("base", property.getProperty("base"));
-        setStashElement("dost", property.getProperty("dost"));
-        setStashElement("dostSport", property.getProperty("dostSport"));
-        setStashElement("sport", property.getProperty("sport"));
-        setStashElement("dostSportPred", property.getProperty("dostSportPred"));
-        setStashElement("dostPredBag", property.getProperty("dostPredBag"));
-
     }
 
 
