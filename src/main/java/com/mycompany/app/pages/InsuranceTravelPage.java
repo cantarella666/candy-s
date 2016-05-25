@@ -15,6 +15,7 @@ import java.util.concurrent.TimeUnit;
 import static com.mycompany.app.lib.Init.Stash;
 import static com.mycompany.app.lib.Init.getDriver;
 
+import static com.mycompany.app.lib.Init.getStash;
 import static junit.framework.Assert.assertNotNull;
 
 
@@ -91,8 +92,11 @@ public class InsuranceTravelPage extends AnyPage{
 
     public InsuranceTravelPage(){
         PageFactory.initElements(Init.getDriver(), this);
-        new WebDriverWait(Init.getDriver(), 30).until(ExpectedConditions.presenceOfElementLocated(By
-                .xpath("//h2[text()='Страхование путешественников']")));
+        getDriver().get(getStash().get("url").toString());
+        waitPageToLoad();
+        assertEqualsText("Страхование путешественников", initElement);
+//        new WebDriverWait(Init.getDriver(), 30).until(ExpectedConditions.presenceOfElementLocated(By
+//                .xpath("//h2[text()='Страхование путешественников']")));
     }
 
     public void choosePolic(){
