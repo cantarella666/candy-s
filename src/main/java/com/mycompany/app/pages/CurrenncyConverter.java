@@ -91,6 +91,14 @@ public class CurrenncyConverter extends AnyPage{
         assertEqualsText("EUR", checkTextCurrenccy);
     }
 
+    public void usdTOeuro() throws InterruptedException {
+        clearField(from);
+        getSelect(fromMoney, moneyUSD);
+        getSelect(toMoney, moneyEUR);
+        sendKeys(from, "10023");
+        transfer(Stash.get("toEuroFromUsd"), "10023", to);
+    }
+
     public void rubTOeuro(){
         to.sendKeys("");
         getSelect(fromMoney, moneyRUB);
@@ -99,16 +107,8 @@ public class CurrenncyConverter extends AnyPage{
         transfer(Stash.get("euro"), "34", to);
     }
 
-    public void usdTOeuro() throws InterruptedException {
-        to.sendKeys("");
-        getSelect(fromMoney, moneyUSD);
-        getSelect(toMoney, moneyEUR);
-        sendKeys(from, "10023");
-        transfer(Stash.get("toEuroFromUsd"), "10023", to);
-    }
-
     public void usdTOusd(){
-        to.sendKeys("");
+        clearField(from);
         getSelect(fromMoney, moneyUSD);
         getSelect(toMoney, moneyUSD);
         sendKeys(from, "5");

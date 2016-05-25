@@ -43,8 +43,9 @@ public class StudyTest {
         currenncyConverter.open();
         currenncyConverter.checkDate();
         currenncyConverter.checkField();
-        currenncyConverter.rubTOeuro();
         currenncyConverter.usdTOeuro();
+        currenncyConverter.rubTOeuro();
+
         currenncyConverter.usdTOusd();
 
 
