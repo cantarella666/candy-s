@@ -29,7 +29,7 @@ public class InsuranceTravelPage extends AnyPage{
     @FindBy(name = "finishDate")
     private WebElement fnshDate;
 
-    @FindBy(xpath = "//h2[@text()='Страхование путешественников']")
+    @FindBy(xpath = "//h2[text()='Страхование путешественников']")
     private WebElement initElement;
 
     @FindBy(css = ".ng-binding.ng-scope.b-dropdown-title")
