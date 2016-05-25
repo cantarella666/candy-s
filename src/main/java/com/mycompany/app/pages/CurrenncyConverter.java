@@ -40,16 +40,25 @@ public class CurrenncyConverter extends AnyPage{
     @FindBy(id = "to")
     private WebElement to;
 
-    @FindBy(id="select2-chosen-2")
+    @FindBy(xpath="//label[text()='Поменять']/../div/div/div")
     private WebElement fromMoney;
 
-    @FindBy(id = "select2-chosen-4")
+    @FindBy(xpath = "//label[text()='На']/../div/div/div")
     private WebElement toMoney;
+
+    @FindBy(xpath = "//div[@id='select2-drop']/ul/li/div[text()='RUB']")
+    private WebElement moneyRUB;
+
+    @FindBy(xpath = "//div[@id='select2-drop']/ul/li/div[text()='EUR']")
+    private WebElement moneyEUR;
+
+    @FindBy(xpath = "//div[@id='select2-drop']/ul/li/div[text()='USD']")
+    private WebElement moneyUSD;
 
     public void open(){
         PageFactory.initElements(Init.getDriver(), this);
-        new WebDriverWait(Init.getDriver(), 30).until(ExpectedConditions.presenceOfElementLocated(By
-                .xpath("//span[@class='personalized-widget-title aa-widget-head-draggable currency-icon']")));
+        getDriver().get(getStash().get("url").toString());
+        waitPageToLoad();
 
         assertEqualsText("Конвертер валют", title);
     }
@@ -82,10 +91,27 @@ public class CurrenncyConverter extends AnyPage{
         assertEqualsText("EUR", checkTextCurrenccy);
     }
 
-    public void change4(){
+    public void rubTOeuro(){
+        to.sendKeys("");
+        getSelect(fromMoney, moneyRUB);
+        getSelect(toMoney, moneyEUR);
         sendKeys(from, "34");
+        transfer(Stash.get("euro"), "34", to);
+    }
 
-        assertEqualsText(Stash.get("").toString(),to.getText());
+    public void usdTOeuro() throws InterruptedException {
+        to.sendKeys("");
+        getSelect(fromMoney, moneyUSD);
+        getSelect(toMoney, moneyEUR);
+        sendKeys(from, "10023");
+        transfer(Stash.get("toEuroFromUsd"), "10023", to);
+    }
 
+    public void usdTOusd(){
+        to.sendKeys("");
+        getSelect(fromMoney, moneyUSD);
+        getSelect(toMoney, moneyUSD);
+        sendKeys(from, "5");
+        transfer(Stash.get("toUsdFromUsd"), "5", to);
     }
 }

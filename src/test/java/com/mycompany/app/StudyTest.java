@@ -31,18 +31,22 @@ public class StudyTest {
         setStashElement("year", property.getProperty("year"));
         setStashElement("euro", property.getProperty("euro"));
         setStashElement("dollar", property.getProperty("dollar"));
+        setStashElement("toEuroFromUsd", property.getProperty("toEuroFromUsd"));
+        setStashElement("toUsdFromUsd", property.getProperty("toUsdFromUsd"));
     }
 
 
 
     @Test
     public void Test() throws InterruptedException {
-        getDriver().get(getStash().get("url").toString());
-        TimeUnit.SECONDS.sleep(20);
         CurrenncyConverter currenncyConverter = new CurrenncyConverter();
         currenncyConverter.open();
         currenncyConverter.checkDate();
         currenncyConverter.checkField();
+        currenncyConverter.rubTOeuro();
+        currenncyConverter.usdTOeuro();
+        currenncyConverter.usdTOusd();
+
 
     }
 
