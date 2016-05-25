@@ -73,6 +73,7 @@ public class CurrenncyConverter extends AnyPage{
 
     public void terminal() throws InterruptedException {
         isChecked(trmnl, trmnlChecked);
+        TimeUnit.SECONDS.sleep(10);
         try{
             WebElement trmnlFind = getDriver().findElement(By.xpath("//div[@id='branchList']/ul/li/div/span[@class='item-list-icon itt']"));
         }catch (NoSuchElementException e){
