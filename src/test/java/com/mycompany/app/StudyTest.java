@@ -52,6 +52,9 @@ public class StudyTest {
         currenncyConverter.allBranches();
         currenncyConverter.terminal();
         currenncyConverter.allLocationOne();
+        currenncyConverter.newLocation();
+        currenncyConverter.delBranch();
+        currenncyConverter.checkWithoutBranches();
 
     }
 

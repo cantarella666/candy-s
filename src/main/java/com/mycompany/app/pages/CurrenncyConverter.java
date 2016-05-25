@@ -44,6 +44,9 @@ public class CurrenncyConverter extends AnyPage{
     @FindBy(xpath = "//label[@for='map-filter-type-terminal']")
     private WebElement trmnlChecked;
 
+    @FindBy(xpath = "//button[@class='sbf_button show-more']")
+    private WebElement newLctn;
+
 
     public void searchATM(){
         PageFactory.initElements(Init.getDriver(), this);
@@ -55,7 +58,7 @@ public class CurrenncyConverter extends AnyPage{
         assertEqualsInnerHTML("Отделения и банкоматы", title);
     }
 
-    public void branchSelected(){
+    public void branchSelected() throws InterruptedException {
         isChecked(branch, branchChecked);
 
     }
@@ -69,12 +72,11 @@ public class CurrenncyConverter extends AnyPage{
     }
 
     public void allBranches(){
-        checkLocation();
+        checkLocation(9);
     }
 
     public void terminal() throws InterruptedException {
         isChecked(trmnl, trmnlChecked);
-        TimeUnit.SECONDS.sleep(5);
         try{
             WebElement trmnlFind = getDriver().findElement(By.xpath("//div[@id='branchList']/ul/li/div/span[@class='item-list-icon itt']"));
         }catch (NoSuchElementException e){
@@ -84,9 +86,32 @@ public class CurrenncyConverter extends AnyPage{
     }
 
     public void allLocationOne(){
-        checkLocation();
+        checkLocation(9);
 
 
+    }
+
+    public void newLocation() throws InterruptedException {
+        click(newLctn);
+
+        //поставь значение кучи локаций
+        checkLocation(18);
+    }
+
+    public void delBranch() throws InterruptedException {
+        notChecked(branch, branchChecked);
+        for(int i=1; i<9; i++){
+            try{
+                WebElement orange = getDriver().findElement(By.xpath("//div[@id='branchList']/ul/li" + i + "/div/span[@class='item-list-icon itt']"));
+            }catch (NoSuchElementException e){
+                break;
+
+            }
+        }
+    }
+
+    public void checkWithoutBranches(){
+        checkLocation(9);
     }
 
 }

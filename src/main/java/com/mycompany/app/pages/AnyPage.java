@@ -10,6 +10,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -37,23 +38,25 @@ public abstract class AnyPage {
         //ожидание логирование и т д обвеску сюда вписывать
     }
 
-    public void isChecked(WebElement element1, WebElement element2){
+    public void isChecked(WebElement element1, WebElement element2) throws InterruptedException {
         PageFactory.initElements(Init.getDriver(), this);
         if (!element1.isSelected()){
             click(element2);
+            TimeUnit.SECONDS.sleep(5);
         }
     }
 
-    public void notChecked(WebElement element){
+    public void notChecked(WebElement element1, WebElement element2) throws InterruptedException {
         PageFactory.initElements(Init.getDriver(), this);
-        if (element.isSelected()){
-            click(element);
+        if (element1.isSelected()){
+            click(element2);
+            TimeUnit.SECONDS.sleep(5);
         }
     }
 
-    public void checkLocation(){
-        Double[] allBrnch = new Double[9];
-        for(int i=1; i<9; i++){
+    public void checkLocation(Integer predel){
+        Double[] allBrnch = new Double[predel];
+        for(int i=1; i<predel; i++){
             try {
                 WebElement branch1 = getDriver().findElement(By.xpath("//div[@id='branchList']/ul/li[" + i + "]/div/p[1]"));
                 Pattern pat = Pattern.compile("[-]?[0-9]+(.[0-9]+)?");
