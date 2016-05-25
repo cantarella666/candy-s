@@ -3,10 +3,9 @@ package com.mycompany.app.pages;
 import com.mycompany.app.lib.Init;
 import org.junit.Assert;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -28,6 +27,13 @@ public abstract class AnyPage {
     public void waitPageToLoad(){
         //браузер отдал управление страницей. javascript
         //у страницы есть статусы загрузки. проверка через compire
+        ExpectedCondition<Boolean> expectation = new ExpectedCondition<Boolean>() {
+
+            public Boolean apply(WebDriver driver) {
+                return ((JavascriptExecutor) driver)
+                        .executeScript("return document.readyState").toString().equals("complete");
+            }
+        };
     }
 
     public void click(WebElement element){

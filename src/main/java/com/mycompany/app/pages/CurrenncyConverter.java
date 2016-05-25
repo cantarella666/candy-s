@@ -47,14 +47,10 @@ public class CurrenncyConverter extends AnyPage{
     @FindBy(xpath = "//button[@class='sbf_button show-more']")
     private WebElement newLctn;
 
-
-    public void searchATM(){
-        PageFactory.initElements(Init.getDriver(), this);
-        new WebDriverWait(Init.getDriver(), 30).until(ExpectedConditions.presenceOfElementLocated(By
-                .xpath("//h1[text()='Отделения и банкоматы']")));
-    }
-
     public void open(){
+        PageFactory.initElements(Init.getDriver(), this);
+        getDriver().get(getStash().get("url").toString());
+        waitPageToLoad();
         assertEqualsInnerHTML("Отделения и банкоматы", title);
     }
 
