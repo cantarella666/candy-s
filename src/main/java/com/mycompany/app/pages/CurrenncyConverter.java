@@ -15,103 +15,77 @@ import static com.mycompany.app.lib.Init.Stash;
 import static com.mycompany.app.lib.Init.getDriver;
 
 import static com.mycompany.app.lib.Init.getStash;
-
+import static org.junit.Assert.assertEquals;
 
 
 /**
  * Created by cantarella on 20.05.2016.
  */
 public class CurrenncyConverter extends AnyPage{
-
-    @FindBy(xpath = "//h1[text()='Отделения и банкоматы']")
+    @FindBy(xpath = "//span[@class='personalized-widget-title aa-widget-head-draggable currency-icon']")
     private WebElement title;
 
-    @FindBy(xpath = "//input[@id='map-filter-type-filial']")
-    private WebElement branch;
+    @FindBy(xpath = "//span[@class='currency-converter-date']")
+    private WebElement date;
 
-    @FindBy(xpath = "//label[@for='map-filter-type-filial']")
-    private WebElement branchChecked;
+    @FindBy(xpath = "//label[text()='Поменять']")
+    private WebElement change;
 
-    @FindBy(xpath = "//div[@class='branch-list-item-block']/a/span")
-    private WebElement branchFirst;
+    @FindBy(xpath = "//label[text()='На']")
+    private WebElement NA;
 
-    @FindBy(xpath = "//div[@id='branchList']")
-    private WebElement branchList;
+    @FindBy(id = "from")
+    private WebElement from;
 
-    @FindBy(xpath = "//input[@id='map-filter-type-terminal']")
-    private WebElement trmnl;
+    @FindBy(id = "to")
+    private WebElement to;
 
-    @FindBy(xpath = "//label[@for='map-filter-type-terminal']")
-    private WebElement trmnlChecked;
+    @FindBy(id="select2-chosen-2")
+    private WebElement fromMoney;
 
-    @FindBy(xpath = "//button[@class='sbf_button show-more']")
-    private WebElement newLctn;
-
-
-    public void searchATM(){
-        PageFactory.initElements(Init.getDriver(), this);
-        new WebDriverWait(Init.getDriver(), 30).until(ExpectedConditions.presenceOfElementLocated(By
-                .xpath("//h1[text()='Отделения и банкоматы']")));
-    }
+    @FindBy(id = "select2-chosen-4")
+    private WebElement toMoney;
 
     public void open(){
-        assertEqualsInnerHTML("Отделения и банкоматы", title);
+        PageFactory.initElements(Init.getDriver(), this);
+        new WebDriverWait(Init.getDriver(), 30).until(ExpectedConditions.presenceOfElementLocated(By
+                .xpath("//span[@class='personalized-widget-title aa-widget-head-draggable currency-icon']")));
+
+        assertEqualsText("Конвертер валют", title);
     }
 
-    public void branchSelected() throws InterruptedException {
-        isChecked(branch, branchChecked);
-
+    public void checkDate(){
+        String[] newDate = date.getAttribute("innerHTML").trim().split("\\s+");
+        assertEquals(Stash.get("day"), newDate[0]);
+        assertEquals("мая", newDate[1]);
+        assertEquals(Stash.get("year"), newDate[2]);
     }
 
-    public void branchNotNull(){
-        try{
-            assertNotNull(branchFirst);
-        }catch (NoSuchElementException e){
-            System.out.println("Нет ближайших отделений");
-        }
+    public void checkField(){
+        assertEqualsText("Поменять", change);
+        assertEqualsText("На", NA);
+        fromMoney.isDisplayed();
+        toMoney.isDisplayed();
+        from.isDisplayed();
+        to.isDisplayed();
+
+
+        WebElement checkTextCurrenccy = getDriver().findElement(By.xpath("//div[@class='currency-converter-result']/span[1]"));
+        assertEqualsText("1", checkTextCurrenccy);
+        checkTextCurrenccy = getDriver().findElement(By.xpath("//div[@class='currency-converter-result']/span[3]"));
+        assertEqualsText("RUB", checkTextCurrenccy);
+        checkTextCurrenccy = getDriver().findElement(By.xpath("//div[@class='currency-converter-result']/span[4]"));
+        assertEqualsText("=", checkTextCurrenccy);
+        checkTextCurrenccy = getDriver().findElement(By.xpath("//div[@class='currency-converter-result']/span[5]"));
+        assertEqualsText(Stash.get("euro").toString(), checkTextCurrenccy);
+        checkTextCurrenccy = getDriver().findElement(By.xpath("//div[@class='currency-converter-result']/span[7]"));
+        assertEqualsText("EUR", checkTextCurrenccy);
     }
 
-    public void allBranches(){
-        checkLocation(9);
-    }
+    public void change4(){
+        sendKeys(from, "34");
 
-    public void terminal() throws InterruptedException {
-        isChecked(trmnl, trmnlChecked);
-        try{
-            WebElement trmnlFind = getDriver().findElement(By.xpath("//div[@id='branchList']/ul/li/div/span[@class='item-list-icon itt']"));
-        }catch (NoSuchElementException e){
-            System.out.println("Нет ближайших терминалов");
-        }
+        assertEqualsText(Stash.get("").toString(),to.getText());
 
     }
-
-    public void allLocationOne(){
-        checkLocation(9);
-
-
-    }
-
-    public void newLocation() throws InterruptedException {
-        click(newLctn);
-
-        //поставь значение кучи локаций
-        checkLocation(18);
-    }
-
-    public void delBranch() throws InterruptedException {
-        notChecked(branch, branchChecked);
-        for(int i=1; i<9; i++){
-            try{
-                WebElement orange = getDriver().findElement(By.xpath("//div[@id='branchList']/ul/li" + i + "/div/span[@class='item-list-icon itt']"));
-            }catch (NoSuchElementException e){
-                break;
-
-            }
-        }
-    }
-
-    public void checkWithoutBranches(){
-        checkLocation(9);
-    }
-
 }

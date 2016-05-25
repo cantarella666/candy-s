@@ -26,13 +26,23 @@ public class StudyTest {
         Stash = getStash();
         setStashElement("browser", property.getProperty("browser"));
         setStashElement("url", property.getProperty("url"));
+        setStashElement("day", property.getProperty("day"));
+        setStashElement("mounth", property.getProperty("mounth"));
+        setStashElement("year", property.getProperty("year"));
+        setStashElement("euro", property.getProperty("euro"));
+        setStashElement("dollar", property.getProperty("dollar"));
     }
 
 
 
     @Test
     public void Test() throws InterruptedException {
-
+        getDriver().get(getStash().get("url").toString());
+        TimeUnit.SECONDS.sleep(20);
+        CurrenncyConverter currenncyConverter = new CurrenncyConverter();
+        currenncyConverter.open();
+        currenncyConverter.checkDate();
+        currenncyConverter.checkField();
 
     }
 
