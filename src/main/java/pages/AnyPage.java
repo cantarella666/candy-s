@@ -1,6 +1,6 @@
-package com.mycompany.app.pages;
+package pages;
 
-import com.mycompany.app.lib.Init;
+import lib.Init;
 import org.junit.Assert;
 
 import org.openqa.selenium.JavascriptExecutor;
@@ -10,8 +10,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import static com.mycompany.app.lib.Init.getDriver;
 
 /**
  * Created by cantarella on 20.05.2016.

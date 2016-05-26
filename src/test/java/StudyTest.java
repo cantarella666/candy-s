@@ -1,12 +1,8 @@
-package com.mycompany.app;
-
-import com.mycompany.app.stepDetinitions.CommonStepDetinition;
-import cucumber.api.java.Before;
 import org.junit.AfterClass;
-import org.junit.Test;
+import stepDefinitions.CommonStepDefinition;
 
 
-import static com.mycompany.app.lib.Init.*;
+import static lib.Init.*;
 
 /**
  * Created by cantarella on 14.05.2016.
@@ -15,8 +11,8 @@ import static com.mycompany.app.lib.Init.*;
 
 public class StudyTest {
     public void Test1() throws InterruptedException {
-        CommonStepDetinition study = new CommonStepDetinition();
-        study.openInsuranceTravelTest();
+        CommonStepDefinition study = new CommonStepDefinition();
+        //study.openInsuranceTravelTest();
         study.The_user_is_open_page();
         study.Check_default_values();
         study.Check_formalization_and_confirmation();

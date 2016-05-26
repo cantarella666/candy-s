@@ -1,6 +1,5 @@
-package com.mycompany.app.lib;
+package lib;
 
-import com.mycompany.app.stepDetinitions.CommonStepDetinition;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -11,6 +10,8 @@ import java.io.IOException;
 import java.util.HashMap;
 
 import java.util.concurrent.TimeUnit;
+
+import static stepDefinitions.CommonStepDefinition.beforeClass;
 
 
 public class Init {
@@ -51,11 +52,11 @@ public class Init {
     public static void createWebDriver() {
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
-        /*try {
-            CommonStepDetinition.BeforeClass();
+        try {
+            beforeClass();
         } catch (IOException e) {
             e.printStackTrace();
-        }*/
+        }
         switch (getStash().get("browser").toString()) {
             case "firefox":
                 capabilities.setBrowserName("firefox");

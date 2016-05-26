@@ -1,7 +1,7 @@
-package com.mycompany.app.stepDetinitions;
+package stepDefinitions;
 
 
-import com.mycompany.app.pages.InsuranceTravelPage;
+import pages.InsuranceTravelPage;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
-import static com.mycompany.app.lib.Init.*;
+import static lib.Init.*;
 import static junit.framework.Assert.assertEquals;
 
 
@@ -23,11 +23,11 @@ import static junit.framework.Assert.assertEquals;
  * Created by cantarella on 18.05.2016.
  */
 
-public class CommonStepDetinition {
+public class CommonStepDefinition {
     public InsuranceTravelPage insuranceTravelPage = new InsuranceTravelPage();
 
 @Before
-public static void BeforeClass() throws IOException {
+public static void beforeClass() throws IOException {
         System.out.println("test1");
         Properties property = new Properties();
         property.load(new FileInputStream("src/test/java/config/application.properties"));
