@@ -5,8 +5,8 @@ Feature: testSuite
 
   #Проверка расчета стоимости
   #страховки для путешественников
-  @test1
-Scenario: Test1
+  @InsurancePage
+Scenario: Страховка на отпуск
   Given url 'https://online.sberbankins.ru/store/vzr/index.html#/viewCalc'
   When Проверить значения по умолчанию
   And Проверить доступность вкладов 'Оформление' и 'Подтверждение'

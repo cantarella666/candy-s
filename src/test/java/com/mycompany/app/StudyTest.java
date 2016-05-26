@@ -1,6 +1,7 @@
 package com.mycompany.app;
 
 import com.mycompany.app.stepDetinitions.CommonStepDetinition;
+import cucumber.api.java.Before;
 import org.junit.AfterClass;
 import org.junit.Test;
 
@@ -10,17 +11,13 @@ import static com.mycompany.app.lib.Init.*;
 /**
  * Created by cantarella on 14.05.2016.
  */
+//@Before
+
 public class StudyTest {
-
-
-
-
-
-
     public void Test1() throws InterruptedException {
         CommonStepDetinition study = new CommonStepDetinition();
         study.openInsuranceTravelTest();
-        study.The_user_is_open_page(Stash.get("url").toString());
+        study.The_user_is_open_page();
         study.Check_default_values();
         study.Check_formalization_and_confirmation();
         study.Check_final_result();

@@ -62,6 +62,12 @@
             <version>2.20</version>
         </dependency>
 
+        <dependency>
+            <groupId>ru.yandex.qatools.allure</groupId>
+            <artifactId>allure-cucumber-jvm-adaptor</artifactId>
+            <version>1.5.1</version>
+        </dependency>
+
     </dependencies>
 
     <properties>
@@ -78,8 +84,14 @@
                 <version>2.18.1</version>
                 <configuration>
                     <argLine>
-                        -javaagent:${settings.localRepository}/org/aspectj/aspectjweaver/1.8.4/aspectjweaver-1.8.4.jar "
+                        -javaagent:${settings.localRepository}/org/aspectj/aspectjweaver/1.8.4/aspectjweaver-1.8.4.jar  -Dcucumber.options="--tags @${TAGS}"
                     </argLine>
+                    <properties>
+                        <property>
+                            <name>listener</name>
+                            <value>com.mycompany.app.AllureRunListener</value>
+                        </property>
+                    </properties>
                 </configuration>
                 <dependencies>
                     <dependency>
@@ -92,4 +104,15 @@
         </plugins>
     </build>
 
+    <reporting>
+        <excludeDefaults>true</excludeDefaults>
+        <plugins>
+            <plugin>
+                <groupId>ru.yandex.qatools.allure</groupId>
+                <artifactId>allure-maven-plugin</artifactId>
+                <version>1.4.14</version>
+            </plugin>
+        </plugins>
+    </reporting>
 </project>
+

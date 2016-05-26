@@ -95,9 +95,8 @@ public class InsuranceTravelPage extends AnyPage{
 
     }
 
-    public void openPage(String string){
-        //getStash().get("url").toString()
-        getDriver().get(string);
+    public void openPage(){
+        getStash().get("url").toString();
         waitPageToLoad();
         assertEqualsText("Страхование путешественников", initElement);
 

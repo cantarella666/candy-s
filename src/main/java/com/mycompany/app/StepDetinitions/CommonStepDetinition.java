@@ -48,9 +48,9 @@ public static void BeforeClass() throws IOException {
     public void Before{
 
     }*/
-    @Given("^url '(.*)'$")
-    public void The_user_is_open_page(String string) {
-        insuranceTravelPage.openPage(string);
+    @Given("^url 'https://online.sberbankins.ru/store/vzr/index.html#/viewCalc'$")
+    public void The_user_is_open_page() {
+        insuranceTravelPage.openPage();
     }
     //(" \"([^\"]*)\" message")
     @Then("^Проверить значения по умолчанию$")
