@@ -92,11 +92,15 @@ public class InsuranceTravelPage extends AnyPage{
 
     public InsuranceTravelPage(){
         PageFactory.initElements(Init.getDriver(), this);
-        getDriver().get(getStash().get("url").toString());
+
+    }
+
+    public void openPage(String string){
+        //getStash().get("url").toString()
+        getDriver().get(string);
         waitPageToLoad();
         assertEqualsText("Страхование путешественников", initElement);
-//        new WebDriverWait(Init.getDriver(), 30).until(ExpectedConditions.presenceOfElementLocated(By
-//                .xpath("//h2[text()='Страхование путешественников']")));
+
     }
 
     public void choosePolic(){

@@ -1,16 +1,9 @@
 package com.mycompany.app;
 
-import com.mycompany.app.StepDetinitions.CommonStepDetinition;
-import com.mycompany.app.lib.Init;
-import com.mycompany.app.pages.InsuranceTravelPage;
+import com.mycompany.app.stepDetinitions.CommonStepDetinition;
 import org.junit.AfterClass;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
-
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.util.Properties;
 
 import static com.mycompany.app.lib.Init.*;
 
@@ -19,41 +12,24 @@ import static com.mycompany.app.lib.Init.*;
  */
 public class StudyTest {
 
-    @BeforeClass
-    public static void BeforeClass() throws IOException {
-        System.out.println("test1");
-        Properties property = new Properties();
-        property.load(new FileInputStream("src/test/java/config/application.properties"));
-        Stash = getStash();
-        setStashElement("browser", property.getProperty("browser"));
-        setStashElement("url", property.getProperty("url"));
-        setStashElement("filechrome", property.getProperty("filechrome"));
-        setStashElement("fileie", property.getProperty("fileie"));
-        setStashElement("base", property.getProperty("base"));
-        setStashElement("dost", property.getProperty("dost"));
-        setStashElement("dostSport", property.getProperty("dostSport"));
-        setStashElement("sport", property.getProperty("sport"));
-        setStashElement("dostSportPred", property.getProperty("dostSportPred"));
-        setStashElement("dostPredBag", property.getProperty("dostPredBag"));
-
-    }
 
 
 
-    @Test
-    public void Test() throws InterruptedException {
+
+
+    public void Test1() throws InterruptedException {
         CommonStepDetinition study = new CommonStepDetinition();
         study.openInsuranceTravelTest();
-        InsuranceTravelPage insuranceTravelPage = new InsuranceTravelPage();
-        insuranceTravelPage.choosePolic();
-        insuranceTravelPage.formalizationConformation();
-        insuranceTravelPage.minInsurance();
-        insuranceTravelPage.enoughPrice();
-        insuranceTravelPage.enoughResultPrice();
-        insuranceTravelPage.withSportBlock();
-        insuranceTravelPage.fullTestSportBlock();
-        insuranceTravelPage.providentBlock();
-        insuranceTravelPage.saveBag();
+        study.The_user_is_open_page(Stash.get("url").toString());
+        study.Check_default_values();
+        study.Check_formalization_and_confirmation();
+        study.Check_final_result();
+        study.Choose_enough();
+        study.Check_final_result_with_enough();
+        study.Choose_sportblock_and_check_final_result();
+        study.Check_all_information_in_sportblock();
+        study.Choose_providentblock_and_check_final_result();
+        study.Choose_savebag_and_delete_sportblock_and_check_final_result();
     }
 
 
