@@ -1,14 +1,10 @@
-import org.junit.AfterClass;
+import cucumber.api.java.After;
 import stepDefinitions.CommonStepDefinition;
 
 
 import static lib.Init.*;
 
-/**
- * Created by cantarella on 14.05.2016.
- */
-//@Before
-
+/*
 public class StudyTest {
     public void Test1() throws InterruptedException {
         CommonStepDefinition study = new CommonStepDefinition();
@@ -28,9 +24,5 @@ public class StudyTest {
 
 
 
-    @AfterClass
-    public static void postCondition() {
-        clearStash();
-        getDriver().close();
-    }
-}
+
+}*/

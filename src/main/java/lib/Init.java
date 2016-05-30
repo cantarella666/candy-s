@@ -6,12 +6,11 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
-import java.io.IOException;
+
 import java.util.HashMap;
 
 import java.util.concurrent.TimeUnit;
 
-import static stepDefinitions.CommonStepDefinition.beforeClass;
 
 
 public class Init {
@@ -52,11 +51,11 @@ public class Init {
     public static void createWebDriver() {
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
-        try {
-            beforeClass();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            beforeClass();
+//       } catch (IOException e) {
+//           e.printStackTrace();
+//        }
         switch (getStash().get("browser").toString()) {
             case "firefox":
                 capabilities.setBrowserName("firefox");

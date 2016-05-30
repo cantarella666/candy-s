@@ -15,12 +15,13 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  * Created by cantarella on 20.05.2016.
  */
 public abstract class AnyPage {
-//    public void AnyPage(){
-//        PageFactory.initElements(getDriver(), this);
-//        waitPageToLoad();
-//    }
+    public void AnyPage(){
+        PageFactory.initElements(Init.getDriver(), this);
+        waitPageToLoad();
+    }
 
     public void waitPageToLoad(){
+        PageFactory.initElements(Init.getDriver(), this);
         //браузер отдал управление страницей. javascript
         //у страницы есть статусы загрузки. проверка через compire
         ExpectedCondition<Boolean> expectation = new ExpectedCondition<Boolean>() {

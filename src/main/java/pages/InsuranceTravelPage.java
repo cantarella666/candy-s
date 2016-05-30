@@ -27,7 +27,7 @@ public class InsuranceTravelPage extends AnyPage{
     @FindBy(name = "finishDate")
     private WebElement fnshDate;
 
-    @FindBy(xpath = "//h2[text()='Страхование путешественников']")
+    @FindBy(xpath = "//h2[@class='l-header-title' and contains(.,'Страхование путешественников')]")
     private WebElement initElement;
 
     @FindBy(css = ".ng-binding.ng-scope.b-dropdown-title")
@@ -88,15 +88,14 @@ public class InsuranceTravelPage extends AnyPage{
     private WebElement testSport5;
 
 
-    public InsuranceTravelPage(){
-        PageFactory.initElements(Init.getDriver(), this);
-
-    }
+    /*public InsuranceTravelPage(){
+        waitPageToLoad();
+    }*/
 
     public void openPage(){
         getDriver().get(getStash().get("url").toString());
         waitPageToLoad();
-        assertEqualsText("Страхование путешественников", initElement);
+        assertEqualsInnerHTML("Страхование путешественников", initElement);
 
     }
 

@@ -1,3 +1,5 @@
+package ru.sbt.listener;
+
 import gherkin.formatter.model.Feature;
 import gherkin.formatter.model.Scenario;
 import gherkin.formatter.model.ScenarioOutline;

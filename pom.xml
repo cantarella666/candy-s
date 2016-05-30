@@ -13,17 +13,17 @@
         <dependency>
             <groupId>info.cukes</groupId>
             <artifactId>cucumber-java</artifactId>
-            <version>1.2.0</version>
+            <version>1.2.4</version>
         </dependency>
         <dependency>
             <groupId>info.cukes</groupId>
             <artifactId>cucumber-java8</artifactId>
-            <version>1.2.2</version>
+            <version>1.2.4</version>
         </dependency>
         <dependency>
             <groupId>info.cukes</groupId>
             <artifactId>cucumber-junit</artifactId>
-            <version>1.2.0</version>
+            <version>1.2.4</version>
         </dependency>
 
         <dependency>
@@ -65,7 +65,13 @@
         <dependency>
             <groupId>ru.yandex.qatools.allure</groupId>
             <artifactId>allure-cucumber-jvm-adaptor</artifactId>
-            <version>1.5.1</version>
+            <version>1.4</version>
+        </dependency>
+
+        <dependency>
+            <groupId>ru.yandex.qatools.allure</groupId>
+            <artifactId>allure-bundle</artifactId>
+            <version>1.4.23</version>
         </dependency>
 
     </dependencies>
@@ -74,6 +80,8 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+        <allure.version>1.4.23</allure.version>
+        <aspectj.version>1.8.4</aspectj.version>
     </properties>
 
     <build>
@@ -84,12 +92,12 @@
                 <version>2.18.1</version>
                 <configuration>
                     <argLine>
-                        -javaagent:${settings.localRepository}/org/aspectj/aspectjweaver/1.8.4/aspectjweaver-1.8.4.jar  -Dcucumber.options="--tags @${TAGS}"
+                        -javaagent:${settings.localRepository}/org/aspectj/aspectjweaver/1.8.4/aspectjweaver-1.8.4.jar -Dcucumber.options="--tags @${TAGS}"
                     </argLine>
                     <properties>
                         <property>
                             <name>listener</name>
-                            <value>AllureRunListener</value>
+                            <value>ru.sbt.listener.AllureRunListener</value>
                         </property>
                     </properties>
                 </configuration>
@@ -114,5 +122,5 @@
             </plugin>
         </plugins>
     </reporting>
-</project>
 
+</project>
